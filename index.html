@@ -303,7 +303,7 @@
           opt: 'report',
           uid: liff.getDecodedIDToken().sub,
           detail: detail,
-          user_name: $('#formModal').attr('data-user-name'),
+          user_name: $('#formModal').attr('data-annonymous') === 'true' ? 'ไม่ระบุชื่อ' : $('#formModal').attr('data-user-name'),
           plateNumber: $('#plateNumber-info').val(),
           houseNumber: $('#houseNumber-info').val(),
           ownerName: $('#ownerName-info').val(),
