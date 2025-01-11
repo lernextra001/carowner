@@ -606,9 +606,6 @@
                   'data-user-name': response.user,
                   'data-user-id': response.data.uid
                 })
-                resolve()
-              }
-              if (response.status === 'error' && response.message === 'Unauthorized') {
                 resolve(response.message)
               }
               else {
