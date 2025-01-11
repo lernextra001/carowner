@@ -363,6 +363,11 @@
                   allowOutsideClick: false
                 }).then(() => {
                   $('#formModal').modal('hide')
+                  if($('#formModal').data('anonymous') == 'true') {
+                    setTimeout(() => {
+                      $('#formModal').modal('show')
+                    }, 100)
+                  }
                 })
               } else {
                 Swal.fire({
