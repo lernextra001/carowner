@@ -363,7 +363,7 @@
                   allowOutsideClick: false
                 }).then(() => {
                   $('#formModal').modal('hide')
-                  if($('#formModal').data('anonymous') == 'true') {
+                  if(localStorage.getItem('report-anonymous') === 'true'){
                     setTimeout(() => {
                       $('#formModal').modal('show')
                     }, 100)
@@ -728,6 +728,8 @@
           }).then((result) => {
             if (result.isConfirmed) {
               showOwnerData(new URLSearchParams(window.location.search).get('u'))
+            }else{
+              requestRegister()
             }
           })
         } else if (result.isDenied) {
