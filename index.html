@@ -308,7 +308,6 @@
           houseNumber: $('#houseNumber-info').val(),
           ownerName: $('#ownerName-info').val(),
           ownerPhone: $('#ownerPhone-info').val()
-
         }
         if (image) {
           data.image = image.id
@@ -663,7 +662,8 @@
 
     function requestRegister() {
       if (localStorage.getItem('report-anonymous') === 'true') {
-        $('#infoCard').addClass('d-none')
+        Swal.close()
+        $('#infoCard, #registerForm').addClass('d-none')
         $('#modalForm').attr('data-anonymous', 'true')
         $('#showform-btn').click()
         return
@@ -729,7 +729,7 @@
             }
           })
         } else if (result.isDenied) {
-          $('#infoCard').addClass('d-none')
+          $('#infoCard, #registerForm').addClass('d-none')
           $('#modalForm').attr('data-anonymous', 'true')
           $('#showform-btn').click()
           localStorage.setItem('report-anonymous', 'true')
