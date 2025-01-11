@@ -728,8 +728,6 @@
           }).then((result) => {
             if (result.isConfirmed) {
               showOwnerData(new URLSearchParams(window.location.search).get('u'))
-            }else{
-              requestRegister()
             }
           })
         } else if (result.isDenied) {
