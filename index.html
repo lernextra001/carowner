@@ -661,7 +661,7 @@
       if (localStorage.getItem('report-anonymous') === 'true') {
         Swal.close()
         $('#infoCard, #registerForm').addClass('d-none')
-        $('#modalForm').attr('data-anonymous', 'true')
+        $('#formModal').attr('data-anonymous', 'true')
         $('#showform-btn').click()
         return
       }
@@ -727,7 +727,7 @@
           })
         } else if (result.isDenied) {
           $('#infoCard, #registerForm').addClass('d-none')
-          $('#modalForm').attr('data-anonymous', 'true')
+          $('#formModal').attr('data-anonymous', 'true')
           $('#showform-btn').click()
           localStorage.setItem('report-anonymous', 'true')
         }
