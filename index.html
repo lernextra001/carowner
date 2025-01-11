@@ -239,7 +239,7 @@
   </div>
   <script>
     var token, folder
-    const scriptUrl = 'https://script.google.com/macros/s/AKfycbx37hSrxWBZUFkz3q-NVLwwrN3BoclKR3l8e2o2-ZDyvKRwYPBs4jd9nhBsI5WwTzjwUQ/exec''
+    const scriptUrl = 'https://script.google.com/macros/s/AKfycbx37hSrxWBZUFkz3q-NVLwwrN3BoclKR3l8e2o2-ZDyvKRwYPBs4jd9nhBsI5WwTzjwUQ/exec'
     $(document).ready(function () {
       let params = new URLSearchParams(window.location.search)
       liff.init({ liffId: '2006763668-b44qpLQN' })
@@ -249,7 +249,7 @@
           liff.login({
             redirectUri: window.location.href
           })
-    
+          return
         }
         if (!params.has('u')) {
           $('body').removeClass('d-none')
