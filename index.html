@@ -597,7 +597,7 @@
               user_id: liff.getDecodedIDToken().sub
             },
             success: function (response) {
-              if (response.status === 'success') {
+              if (response.status === 'success' || response.status === 'error' && response.message === 'Unauthorized') {
                 $('#plateNumber-info').val(response.data.plateNumber)
                 $('#houseNumber-info').val(response.data.houseNumber)
                 $('#ownerName-info').val(response.data.ownerName)
@@ -608,7 +608,7 @@
                 })
                 resolve()
               }
-              else if (response.status === 'error' && response.message === 'Unauthorized') {
+              if (response.status === 'error' && response.message === 'Unauthorized') {
                 resolve(response.message)
               }
               else {
