@@ -245,7 +245,13 @@
       liff.init({ liffId: '2006763668-b44qpLQN' })
 
       liff.ready.then(async () => {
-        let isFriend = await checkFriendShip()
+        if (!liff.isLoggedIn()) {
+          liff.login({
+            redirectUri: window.location.href
+          })
+          return
+        }
+        let isFriend = await liff.getFriendship()
         if (!isFriend.friendFlag) {
           Swal.fire({
             icon: 'error',
@@ -261,12 +267,6 @@
               })
 
             }
-          })
-          return
-        }
-        if (!liff.isLoggedIn()) {
-          liff.login({
-            redirectUri: window.location.href
           })
           return
         }
@@ -762,19 +762,10 @@
     }
     function checkFriendShip() {
       return new Promise((resolve, reject) => {
-        $.ajax({
-          url: scriptUrl,
-          method: 'POST',
-          data: {
-            opt: 'checkFriendShip',
-            uid: liff.getDecodedIDToken().sub
-          },
-          success: function (response) {
-            resolve(response)
-          },
-          error: function () {
-            reject()
-          }
+        liff.getFriendship().then((data) => {
+          resolve(data)
+        }).catch(() => {
+          reject()
         })
       })
     }
