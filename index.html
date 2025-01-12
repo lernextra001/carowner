@@ -244,7 +244,26 @@
       let params = new URLSearchParams(window.location.search)
       liff.init({ liffId: '2006763668-b44qpLQN' })
 
-      liff.ready.then(() => {
+      liff.ready.then(async () => {
+        let isFriend = await liff.getFriendship()
+        if(!isFriend.friendFlag){
+          Swal.fire({
+            icon: 'error',
+            title: 'ยังไม่เพิ่มเพื่อน',
+            html: 'กรุณาเพิ่มเพื่อนกับ Line Official Account ก่อนใช้งาน' +
+              '<br><br><a id="addfriend-btn"><img src="https://scdn.line-apps.com/n/line_add_friends/btn/th.png" alt="เพิ่มเพื่อน" height="36" border="0"></a>',
+            showConfirmButton: false,
+            allowOutsideClick: false,
+            willOpen: () => {
+              $('body').addClass('d-none')
+              $('#addfriend-btn').click(() => {
+                location.href = 'https://line.me/R/ti/p/@629hhvtd'
+              })
+
+            }
+          })
+          return
+        }
         if (!liff.isLoggedIn()) {
           liff.login({
             redirectUri: window.location.href
@@ -363,7 +382,7 @@
                   allowOutsideClick: false
                 }).then(() => {
                   $('#formModal').modal('hide')
-                  if(localStorage.getItem('report-anonymous')){
+                  if (localStorage.getItem('report-anonymous')) {
                     setTimeout(() => {
                       $('#showform-btn').click()
                     }, 100)
@@ -728,7 +747,7 @@
           }).then((result) => {
             if (result.isConfirmed) {
               showOwnerData(new URLSearchParams(window.location.search).get('u'))
-            }else{
+            } else {
               requestRegister()
             }
           })
