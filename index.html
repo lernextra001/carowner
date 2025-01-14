@@ -277,7 +277,6 @@
         $(document).ready(function () {
             let params = new URLSearchParams(window.location.search)
             liff.init({ liffId: '2006763668-b44qpLQN' })
-
             liff.ready.then(async () => {
                 if (!liff.isLoggedIn()) {
                     liff.login({
@@ -843,25 +842,26 @@
         }
 
         let holding = true
-        function loadToken() {
+        async function loadToken() {
             $.ajax({
                 url: scriptUrl,
                 method: 'POST',
                 data: {
                     opt: 'getUploadKey'
                 },
-                success: function (response) {
+                success: async function (response) {
                     console.log("🚀 ~ awaitnewPromise ~ response:", response)
                     if (response.status === 'success') {
                         token = response.data.token
                         folder = response.data.folder
                         holding = false
-                        resolve()
                     } else {
-                        reject()
+                        await new Promise(resolve => setTimeout(resolve, 1000))
+                        loadToken()
                     }
                 },
-                error: function () {
+                error:async  function () {
+                    await new Promise(resolve => setTimeout(resolve, 1000))
                     loadToken()
                 }
             })
