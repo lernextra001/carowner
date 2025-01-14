@@ -277,6 +277,7 @@
         $(document).ready(function () {
             let params = new URLSearchParams(window.location.search)
             liff.init({ liffId: '2006763668-b44qpLQN' })
+     
             liff.ready.then(async () => {
                 if (!liff.isLoggedIn()) {
                     liff.login({
@@ -479,6 +480,7 @@
                 console.log(response);
 
                 if (response.status == 'success') {
+                    data.uid = JSON.parse(localStorage.getItem('qrdata')).uid
                     data.report_id = response.report_id
                     data.opt = 'sendline'
                     console.log(data);
