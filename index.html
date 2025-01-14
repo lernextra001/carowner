@@ -229,7 +229,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="user-name" class="col-form-label">ชื่อผู้แจ้ง:</label>
-                            <input type="text" class="form-control" id="user-name" readonly>
+                            <input type="text" class="form-control" id="user-name" readonly >
                         </div>
                         <div class="mb-3">
                             <label for="detail-text" class="col-form-label">รายละเอียดปัญหา/เรื่องร้องเรียน:</label>
@@ -276,7 +276,9 @@
 
         $(document).ready(function () {
             let params = new URLSearchParams(window.location.search)
-            liff.init({ liffId: '2006763668-b44qpLQN' })
+            // liff.init({ liffId: '2006763668-b44qpLQN' })
+            liff.init({ liffId: '1655873446-MpmBPPzl' })
+
             liff.ready.then(async () => {
                 if (!liff.isLoggedIn()) {
                     liff.login({
@@ -332,7 +334,6 @@
                         showConfirmButton: false,
                         allowOutsideClick: false
                     })
-
                 } else {
                     let qrdata = await new Promise((resolve, reject) => {
                         $.ajax({
@@ -387,7 +388,6 @@
                         $('#infoCard').removeClass('d-none')
                         $('#registerForm').addClass('d-none')
                     } else {
-
                         $('#registerForm').removeClass('d-none').attr('data-regist-id', params.get('u'))
                         $('#infoCard').addClass('d-none')
                     }
@@ -436,6 +436,7 @@
                 let data = {
                     opt: 'report',
                     uid: liff.getDecodedIDToken().sub,
+                    uuid: new URLSearchParams(window.location.search).get('u'),
                     detail: detail,
                     user_name: $('#formModal').attr('data-annonymous') === 'true' ? 'ไม่ระบุชื่อ' : $('#formModal').attr('data-user-name'),
                     plateNumber: $('#plateNumber-info').val(),
