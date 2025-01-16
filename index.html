@@ -378,6 +378,7 @@
                     Swal.close()
                     console.log("🚀 ~ qrdata ~ qrdata:", qrdata)
                     localStorage.setItem('qrdata', JSON.stringify(qrdata.data))
+                    loadToken()
                     if (qrdata.auth === 'Unauthorized') {
                         requestRegister()
                         return
@@ -747,7 +748,7 @@
             $('#ownerName-info').val(qrdata.ownerName)
             $('#ownerPhone-info').val(qrdata.ownerPhone)
             $('#formModal').attr('data-user-name', qrdata.ownerName)
-            loadToken()
+           
             Swal.close()
             $('#infoCard').removeClass('d-none')
             $('#registerForm').addClass('d-none')
