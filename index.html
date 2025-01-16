@@ -344,7 +344,7 @@
                                 uid: liff.getDecodedIDToken().sub
                             },
                             success: function (response) {
-                                console.log("🚀 ~ qrdata ~ response:", response);
+                                
                                 if (response.status === 'success') {
                                     // if (response.data.uid != '' && response.auth == 'Unauthorized') {
                                     //     resolve('Unauthorized')
@@ -376,7 +376,7 @@
                         })
                     })
                     Swal.close()
-                    console.log("🚀 ~ qrdata ~ qrdata:", qrdata)
+                    
                     localStorage.setItem('qrdata', JSON.stringify(qrdata.data))
                     loadToken()
                     if (qrdata.auth === 'Unauthorized') {
@@ -449,7 +449,7 @@
                 if (image) {
                     data.image = image.id
                 }
-                console.log(data);
+                
                 Swal.fire({
                     iconHtml: '<i class="bi bi-hourglass-split text-primary fs-1"></i>',
                     customClass: {
@@ -468,7 +468,7 @@
                         method: 'POST',
                         data: data,
                         success: function (response) {
-                            console.log("🚀 ~ response ~ response:", response)
+                            
                             if (response.status === 'success') {
                                 resolve(response)
                             } else {
@@ -480,13 +480,13 @@
                         }
                     })
                 })
-                console.log(response);
+                
 
                 if (response.status == 'success') {
                     data.uid = JSON.parse(localStorage.getItem('qrdata')).uid
                     data.report_id = response.report_id
                     data.opt = 'sendline'
-                    console.log(data);
+                    
                     $.ajax({
                         url: scriptUrl,
                         method: 'POST',
@@ -504,7 +504,10 @@
                                     if (localStorage.getItem('report-anonymous')) {
                                         setTimeout(() => {
                                             $('#showform-btn').click()
-                                        }, 100)
+                                        }, 500)
+                                    }
+                                    if(liff.isInClient()) {
+                                        liff.closeWindow()
                                     }
                                 })
                             } else {
@@ -800,7 +803,7 @@
                                     uid: liff.getDecodedIDToken().sub
                                 },
                                 success: function (response) {
-                                    console.log("🚀 ~ requestRegister ~ response:", response)
+                                    
                                     if (response.status === 'success') {
                                         return true
                                     } else {
@@ -854,7 +857,7 @@
                     opt: 'getUploadKey'
                 },
                 success: async function (response) {
-                    console.log("🚀 ~ awaitnewPromise ~ response:", response)
+                    
                     if (response.status === 'success') {
                         token = response.data.token
                         folder = response.data.folder
