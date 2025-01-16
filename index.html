@@ -429,6 +429,7 @@
 
         $('#submit-btn').click(async function () {
             let detail, image
+            let qrdata = JSON.parse(localStorage.getItem('qrdata'))
             detail = $('#detail-text').val()
             if ($('#image-preview img').attr('has-image')) {
                 image = await uploadFile()
@@ -440,10 +441,10 @@
                     uuid: new URLSearchParams(window.location.search).get('u'),
                     detail: detail,
                     user_name: $('#formModal').attr('data-annonymous') === 'true' ? 'ไม่ระบุชื่อ' : $('#formModal').attr('data-user-name'),
-                    plateNumber: $('#plateNumber-info').val(),
-                    houseNumber: $('#houseNumber-info').val(),
-                    ownerName: $('#ownerName-info').val(),
-                    ownerPhone: $('#ownerPhone-info').val()
+                    plateNumber: qrdata.plateNumber,
+                    houseNumber: qrdata.houseNumber,
+                    ownerName: qrdata.ownerName,
+                    ownerPhone: qrdata.ownerPhone
                 }
                 if (image) {
                     data.image = image.id
