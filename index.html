@@ -346,10 +346,11 @@
                             success: function (response) {
                                 console.log("🚀 ~ qrdata ~ response:", response);
                                 if (response.status === 'success') {
-                                    if (response.data.uid != '' && response.auth == 'Unauthorized') {
-                                        resolve('Unauthorized')
-                                    }
-                                    resolve(response.data)
+                                    // if (response.data.uid != '' && response.auth == 'Unauthorized') {
+                                    //     resolve('Unauthorized')
+                                    // }
+                                    // resolve(response.data)
+                                    resolve(response)
                                 } else {
                                     reject()
                                 }
@@ -376,7 +377,8 @@
                     })
                     Swal.close()
                     console.log("🚀 ~ qrdata ~ qrdata:", qrdata)
-                    if (qrdata === 'Unauthorized') {
+                    localStorage.setItem('qrdata', JSON.stringify(qrdata.data))
+                    if (qrdata.auth === 'Unauthorized') {
                         requestRegister()
                         return
                     }
