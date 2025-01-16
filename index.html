@@ -384,7 +384,6 @@
                         return
                     }
                     $('body').removeClass('d-none')
-                    localStorage.setItem('qrdata', JSON.stringify(qrdata))
                     if (qrdata.uid != "") {
                         showOwnerData()
                         $('#infoCard').removeClass('d-none')
