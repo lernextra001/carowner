@@ -373,7 +373,7 @@
                     
                     localStorage.setItem('qrdata', JSON.stringify(qrdata.data))
                     loadToken()
-                    if (qrdata.auth === 'Unauthorized' && qrdara.data.uid != "") {
+                    if (qrdata.auth === 'Unauthorized' && qrdata.data.uid != "") {
                         requestRegister()
                         return
                     }
